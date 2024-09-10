@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@config/*": ["src/config/*", "src/utils/*"]
+    },
+    "types": ["node", "koa", "mongoose", "@types/koa", "@types/koa-bodyparser","@types/koa-router"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "./node_modules" // 注意这里很重要， ts打包转化的时候一定要忽略node_modules
+  ]
+}

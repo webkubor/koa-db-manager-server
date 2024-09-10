@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "koa-webkubor",
+      "script": "dist/index.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
