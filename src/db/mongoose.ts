@@ -1,4 +1,8 @@
 import mongoose, { ConnectOptions } from "mongoose";
+import dotenv from 'dotenv';
+import path from 'path';
+dotenv.config({ path: path.join(__dirname, '..', '.env') });
+
 
 // 设置 MongoDB 连接的主机、端口和数据库名称，可以通过环境变量进行配置，或者使用默认值
 const DB_HOST = process.env.DB_HOST || 'localhost';  // DB_HOST: MongoDB 服务的主机地址

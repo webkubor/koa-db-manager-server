@@ -22,20 +22,21 @@ pnpm run  dev
 
 ```
 
+#### 关于项目里的 ES6 写法
+
+如果是 Node.js 项目，推荐使用 "target": "es6" 和 "module": "commonjs"，因为 Node.js 使用 CommonJS 作为模块系统。
+如果是浏览器项目，推荐使用 "target": "es6" 和 "module": "es6"，因为现代浏览器支持原生的 ES 模块。
 
 
-#### pm2
-
-```bash
-pm2 show
-pm2 status
-pm2 stop app.js
-pm2 restart app.js
-pm2 delete app.js
-
+其实我在 ts 配置中写的是
+```json
+  "target": "es6",
+   "module": "commonjs",
 ```
 
-
+- TypeScript 支持： TypeScript 编译器允许你在 .ts 文件中使用 ES6 的 import 和 export，并在编译时将其转换为指定的模块系统（如 CommonJS）
+- 编译结果： 在编译后，ES6 模块语法会被转换为 CommonJS 模块语法。
+- 运行时处理： 使用 ts-node 可以直接运行 TypeScript 文件，它会动态处理 import 和 export 语法，无需先编译为 JavaScript
 
 #### MongoDB 
 
@@ -58,3 +59,59 @@ IoT 设备产生大量的实时数据，MongoDB 可以高效地存储这些数�
 可以存储设备传感器数据、状态信息、事件日志等，方便进行实时监控和历史数据分析。
 利用 MongoDB 的聚合框架和时间序列集合，可以对设备数据进行复杂的统计分析和趋势预测。
 例如，一个智能工厂可以使用 MongoDB 存储生产设备的传感器数据，实时监测设备运行状态，进行故障预测和生产优化
+
+
+
+#### mysql
+
+######  获取所有用户
+```SQL
+const sql = 'SELECT * FROM users';
+const users = await query(sql);
+console.log(users);
+
+```
+###### 根据 ID 获取用户
+```SQL
+const sql = 'SELECT * FROM users WHERE id = ?';
+const userId = 1;
+const user = await query(sql, [userId]);
+console.log(user);
+```
+###### 插入数据
+```SQL
+const sql = 'INSERT INTO users (name, email, age) VALUES (?, ?, ?)';
+const values = ['Alice', 'alice@example.com', 25];
+const result = await query(sql, values);
+console.log(result); // 包含插入结果，如 insertId、affectedRows 等
+
+```
+##### UPDATE 更新数据
+```SQL
+const sql = 'UPDATE users SET email = ? WHERE id = ?';
+const values = ['alice.new@example.com', 1];
+const result = await query(sql, values);
+console.log(result); // 包含受影响的行数
+
+```
+
+###### 删除
+```SQL
+const sql = 'DELETE FROM users WHERE id = ?';
+const userId = 1;
+const result = await query(sql, [userId]);
+console.log(result); // 包含受影响的行数
+
+```
+
+
+#### pm2 的运行
+
+```bash
+pm2 show
+pm2 status
+pm2 stop app.js
+pm2 restart app.js
+pm2 delete app.js
+
+```

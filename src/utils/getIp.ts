@@ -1,5 +1,5 @@
-const os = require('os');
-const net = require('net');
+import os from 'os';
+import net from 'net';
 
 
 export function getLocalIPAddress(port) {
